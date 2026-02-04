@@ -7,7 +7,7 @@ app.use(express.json());
 
 // Test Route: Check if server is running
 app.get('/', (req, res) => {
-    res.send('Server is live! Use /send-test-email to test mailing.');
+    res.send('Server is live! Mailer app updeated and add tls config.');
 });
 
 // Email Sending Route
@@ -23,6 +23,9 @@ app.post('/api/send-email', async (req, res) => {
         auth: {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASS
+        },
+        tls: {
+            rejectUnauthorized: false
         }
     });
 
