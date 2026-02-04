@@ -7,7 +7,7 @@ app.use(express.json());
 
 // Test Route: Check if server is running
 app.get('/', (req, res) => {
-    res.send('Server is live! Mailer app updeated and add tls config.');
+    res.send('Server is live! Mailer app changed port to 587 and removed tls config.');
 });
 
 // Email Sending Route
@@ -18,20 +18,17 @@ app.post('/api/send-email', async (req, res) => {
     // 1. Transporter Setup
     let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
-        port: 465,
-        secure: true,
+        port: 587,
+        secure: false,
         auth: {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASS
-        },
-        tls: {
-            rejectUnauthorized: false
         }
     });
 
     // 2. Mail Options
     let mailOptions = {
-        from: process.env.EMAIL_USER,
+        from: `"Mailer App" <${process.env.EMAIL_USER}>`
         to: to, // Agar body me email na ho toh default
         subject: subject || "Render Testing - Nodemailer",
         text: message || "Hello! This is a test email from your Render-deployed MERN app."
