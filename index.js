@@ -7,7 +7,7 @@ app.use(express.json());
 
 // Test Route: Check if server is running
 app.get('/', (req, res) => {
-    res.send('Server is live! Mailer app changed port to 587 and removed tls config.');
+    res.send('Server is live! Mailer app added timeouts and deployed on Render.');
 });
 
 // Email Sending Route
@@ -26,7 +26,10 @@ app.post('/api/send-email', async (req, res) => {
         },
         dns: {
             family: 4
-        }
+        },
+        connectionTimeout: 10000,
+        greetingTimeout: 10000,
+        socketTimeout: 10000
     });
 
     // 2. Mail Options
