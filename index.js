@@ -28,8 +28,8 @@ app.post('/api/send-email', async (req, res) => {
 
     // 2. Mail Options
     let mailOptions = {
-        from: `"Mailer App" <${process.env.EMAIL_USER}>`
-        to: to, // Agar body me email na ho toh default
+        from: `"Mailer App" <${process.env.EMAIL_USER}>`,
+        to: to,
         subject: subject || "Render Testing - Nodemailer",
         text: message || "Hello! This is a test email from your Render-deployed MERN app."
     };
